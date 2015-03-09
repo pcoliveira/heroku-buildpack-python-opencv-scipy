@@ -13,9 +13,9 @@ subtitle() {
 shopt -s extglob
 
 if [ $(uname) == Darwin ]; then
-    sed() { command sed -l "$@"; }
+  sed() { command sed -l "$@"; }
 else
-    sed() { command sed -u "$@"; }
+  sed() { command sed -u "$@"; }
 fi
 
 # Does some serious copying.
@@ -71,8 +71,9 @@ export PYTHONPATH="$BUILD_DIR/.heroku/python/lib/python2.7/site-packages/:$BUILD
 mkdir -p $CACHE_DIR
 title "Generating environment"
 if [ ! -f $CACHE_DIR/env.tar.gz ]; then
-	subtitle "Fetching..."
-	curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
+  subtitle "Fetching..."
+  #curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
+  curl -s -L "https://thumbor-cdn.snapist.com/python-opencv.tar.gz" > $CACHE_DIR/env.tar.gz
 fi
 subtitle "Unpacking..."
 tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
@@ -80,8 +81,8 @@ tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
 
 # installing application dependencies
 if [ -f $BUILD_DIR/requirements.txt ]; then
-	title "Found requirements.txt, installing dependencies using pip"
-	$BUILD_DIR/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external
+  title "Found requirements.txt, installing dependencies using pip"
+  $BUILD_DIR/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external
 fi
 
 # creating env variables
