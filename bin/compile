@@ -73,7 +73,7 @@ title "Generating environment"
 if [ ! -f $CACHE_DIR/env.tar.gz ]; then
   subtitle "Fetching..."
   #curl -s -L "https://db.tt/38ZdLUoQ" > $CACHE_DIR/env.tar.gz
-  curl -s -L "https://thumbor-cdn.snapist.com/python-opencv.tar.gz" > $CACHE_DIR/env.tar.gz
+  curl -L "https://thumbor-cdn.snapist.com/python-opencv.tar.gz" > $CACHE_DIR/env.tar.gz
 fi
 subtitle "Unpacking..."
 tar -xzf $CACHE_DIR/env.tar.gz -C $BUILD_DIR
